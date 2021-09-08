@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+</head>
+
+<body >
+
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarText" aria-controls="navbarText"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarText">
+			<ul class="navbar-nav text-center">
+				<a class="navbar-brand" href="/product/list"> Shopping cart</a>
+				<li class="nav-item active"><a class="nav-link"
+					href="/product/list">Trang chủ <span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Giới
+						thiệu</a></li>
+				<li class="nav-item"><a class="nav-link" href="/home/contact">Liên
+						hệ</a></li>
+				<li
+					th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('PM')}">
+				<a class="nav-link"th:href="@{/admin/home/index}">ADmin
+						</a></li>
+
+				<!-- <li class="nav-item">
+					<div class="dropdown">
+						<a class="btn btn-primary dropdown-toggle" href="#" role="button"
+							id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"><i class="fa fa-user-circle-o"> >
+								[[${#request.remoteUser}]]</i> </a>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							<th:block th:if="${#request.remoteUser}">
+								<a class="dropdown-item" href="/home/editProfile">Cập nhật
+									tài khoản</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="/home/change">Đổi mật khẩu</a>
+								<a class="dropdown-item" th:href="@{/order/list}">Đơn hàng
+									của tôi</a>
+								<a class="dropdown-item" th:href="@{/security/logoff}">Đăng
+									xuất</a>
+							</th:block>
+							<th:block th:unless="${#request.remoteUser}">
+								<div class="dropdown-divider"></div>
+
+								<a class="dropdown-item" th:href="@{/security/login/form}">Đăng
+									nhập</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="/home/sigup">Đăng ký</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="/home/forgot">Quên mật khẩu</a>
+							</th:block>
+
+
+
+
+						</div>
+
+					</div>
+				</li> -->
+				<th:block th:if="${#request.remoteUser}">
+				 <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          [[${#request.remoteUser}]]
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="/home/editProfile">Cập nhật
+									tài khoản</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="/home/change">Đổi mật khẩu</a>
+								<a class="dropdown-item" th:href="@{/order/list}">Đơn hàng
+									của tôi</a>
+								<a class="dropdown-item" th:href="@{/security/logoff}">Đăng
+									xuất</a>
+        </div>
+      </li>
+</th:block>
+<th:block th:unless="${#request.remoteUser}">
+				 <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          No User 
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+       <div class="dropdown-divider"></div>
+
+								<a class="dropdown-item" th:href="@{/security/login/form}">Đăng
+									nhập</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="/home/sigup">Đăng ký</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="/home/forgot">Quên mật khẩu</a>
+        </div>
+      </li>
+</th:block>
+
+			</ul>
+
+		</div>
+
+		
+
+	</nav>
+</body>
+
+</html>

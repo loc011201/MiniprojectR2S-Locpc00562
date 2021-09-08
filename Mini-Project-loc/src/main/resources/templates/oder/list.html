@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main>
+		<div th:fragment="shopping_cart">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Id</th>
+						<th scope="col">Name</th>
+						<th scope="col">Price</th>
+						<th scope="col">Quantity</th>
+						<th scope="col">Amount</th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in cart.items">
+						<th scope="row">{{item.id}}</th>
+						<td>{{item.name}}</td>
+						<td>${{item.price | number : 2}}</td>
+						<td><input ng-change="cart.saveToLocalStorage()"
+							ng-model="item.qty" type="number" min="1"></td>
+						<td>${{item.qty*item.price | number : 2}}</td>
+						<td><button ng-click="cart.remove(item.id)" type="button"
+								class="btn btn-danger">x</button></td>
+					</tr>
+					<tr>
+						<td colspan="4">Tổng cộng</td>
+						<td>${{cart.amount}}</td>
+					</tr>
+					<tr>
+						<td colspan="3"><button ng-click="cart.clear()" type="button"
+								class="btn btn-danger">Reset</button></td>
+						<td colspan="2"><a class="btn btn-primary"
+							th:href="@{/oder/checkout}">Checkout</a></td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</main>
+</body>
+</html>
